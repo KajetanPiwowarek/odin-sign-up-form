@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06aa5e">
+    <meta name="msapplication-navbutton-color" content="#06aa5e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>HotDesk: Sign-up ™</title>
+    <link rel="shortcut icon" href="./images/workplace.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script>
+</head>
+<body>
+    <main class="card-container slideUp-animation">
+        <div class="image-container">
+            <h1 class="company">Hot Desk</h1>
+            <img src="./images/desk.png" class="illustration" alt="">
+            <a href="#btm" class="mobile-btm-nav">
+                <img src="./images/dbl-arrow.png" alt="">
+            </a>
+        </div>
+        <form action="" method="">
+            <div class="form-container slideRight-animation">
+    
+                <h1 class="form-header">
+                    Sign up
+                </h1>
+    
+                <div class="input-container">
+                    <label for="first-name"></label>
+                    <input type="text" name="first_name" id="first-name" placeholder="" required>
+                    <span>
+                        First Name
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="last-name"></label>
+                    <input type="text" name="last_name" id="last-name" placeholder="" required>
+                    <span>
+                        Last Name
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="email">
+                    </label>
+                    <input type="email" name="email" id="email" placeholder="" required>
+                    <span>
+                        E-mail
+                    </span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="phone">
+                    </label>
+                    <input type="tel" name="phone" id="phone" placeholder="" required>
+                    <span>Phone</span>
+                    <div class="error"></div>
+                </div>
+    
+                <div class="input-container">
+                    <label for="user-password"></label>
+                    <input type="password" name="user_password" id="user-password" placeholder="" class="user-password" required>
+                    <span>Password</span>
+                    <div class="error"></div>
+                </div>
+
+                <div class="input-container">
+                    <label for="user-password-confirm"></label>
+                    <input type="password" id="user-password-confirm" placeholder="" class="password-confirmation" required>
+                    <span>
+                        Confirm Password
+                    </span>
+                    <div class="error"></div>
+                </div>
+
+                <div id="btm">
+                    <button type="submit" class="submit-btn">Create Account</button>
+                    <p class="btm-text">
+                        Already have an account..? <span class="btm-text-highlighted">  Login</span>
+                    </p>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
