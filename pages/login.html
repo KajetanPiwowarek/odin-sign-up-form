@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HotDesk: Login</title>
+    <link
+      rel="shortcut icon"
+      href="/images/workplace.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/login.css" />
+    <script src="/js/login.js" defer></script>
+  </head>
+  <body>
+    <main class="card-container">
+      <div class="container">
+      <h1 class="company-name"><a href="/pages/index.html">Hot Desk</a></h1>
+      <form class="form" method="post" action="">
+        <div class="form-container">
+          <h1 class="header">Login</h1>
+          <div class="input">
+            <label for="email"> </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder=""
+              required
+            />
+            <span>E-mail</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="user-password"></label>
+            <input
+              type="password"
+              name="user_password"
+              id="user-password"
+              placeholder=""
+              class="user-password"
+              required
+            />
+            <span>Password</span>
+            <div class="error"></div>
+          </div>
+
+          <div id="account-container">
+            <button type="submit" class="btn-login">
+              Login
+            </button>
+            <p class="account-text">
+              You don't have an account yet..?
+              <a href="/pages/sign-up.html" class="sign-up-text">Sign-up</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    </main>
+  </body>
+</html>

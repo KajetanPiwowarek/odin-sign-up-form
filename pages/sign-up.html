@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HotDesk: Sign-up</title>
+    <link
+      rel="shortcut icon"
+      href="/images/workplace.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/sign-up.css" />
+    <script src="/js/sign-up.js" defer></script>
+  </head>
+  <body>
+    <main class="card-container">
+      <div class="image-container">
+        <h1 class="company-name"><a href="/pages/index.html">Hot Desk</a></h1>
+        <img src="/images/desk.png" class="image-desk" alt="Desk" />
+      </div>
+      <form class="form" method="post" action="">
+        <div class="form-container">
+          <h1 class="header">Sign up</h1>
+          <div class="input">
+            <label for="first-name"></label>
+            <input
+              type="text"
+              name="first_name"
+              id="first-name"
+              placeholder=""
+              required
+            />
+            <span>First Name</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="last-name"></label>
+            <input
+              type="text"
+              name="last_name"
+              id="last-name"
+              placeholder=""
+              required
+            />
+            <span>Last Name</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="email"> </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder=""
+              required
+            />
+            <span>E-mail</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="phone"> </label>
+            <input type="tel" name="phone" id="phone" placeholder="" required />
+            <span>Phone</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="user-password"></label>
+            <input
+              type="password"
+              name="user_password"
+              id="user-password"
+              placeholder=""
+              class="user-password"
+              required
+            />
+            <span>Password</span>
+            <div class="error"></div>
+          </div>
+
+          <div class="input">
+            <label for="user-password-confirm"></label>
+            <input
+              type="password"
+              id="user-password-confirm"
+              placeholder=""
+              class="password-confirmation"
+              required
+            />
+            <span>Confirm Password</span>
+            <div class="error"></div>
+          </div>
+
+          <div id="account-container">
+            <button type="submit" class="btn-create-account">
+              Create Account
+            </button>
+            <p class="account-text">
+              Already have an account..?
+              <a href="/pages/login.html" class="login-text">Login</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
