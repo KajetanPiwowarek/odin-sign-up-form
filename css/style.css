@@ -44,6 +44,10 @@ body {
     margin-left: 2rem;
 }
 
+.nav-bar > a {
+    text-decoration: none;
+}
+
 .navigation {
     display: flex;
     justify-content: end;

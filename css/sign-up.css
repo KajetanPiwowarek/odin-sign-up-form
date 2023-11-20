@@ -86,17 +86,6 @@ span {
     font-size: 15px;
     transition: all .4s;
 }
-[type="submit"]{
-    border: 0;
-    background-color: var(--dusky-green);
-    color: white;
-    padding: 10px 50px;
-    letter-spacing: .05em;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-size: 17px;
-    outline: none;
-}
 
 form {
     width: auto;
@@ -117,10 +106,9 @@ span:not(.login-text) {
 }
 
 input:focus ~ span,
-input:valid ~ span,
 input:not(:placeholder-shown) ~ span{
     font-size: 10px;
-    transform: translateX(4px) translateY(-7px);
+    transform: translateX(4px) translateY(-16px);
     font-size: 0.80em;
     padding: 0 6px;
     color: var(--cyny-green);
@@ -132,8 +120,12 @@ input:focus-visible {
     outline: none;
 }
 
-input:valid {
-    border-bottom: 1px solid var(--green);  
+.valid {
+    border: 1px solid var(--green);  
+}
+
+.invalid {
+    border: 1px solid var(--red);  
 }
 
 input:-webkit-autofill { 
@@ -144,9 +136,22 @@ input:-webkit-autofill {
 .error {
     color: rgba(255, 51, 51, 0.575);
     font-family: sans-serif;
-    text-transform: none;
-    overflow: hidden;
+    font-size: 12px;
     margin-top: 4px;
+    padding-left: 5px;
+}
+
+.btnCreateAccount {
+    border: 0;
+    background-color: var(--dusky-green);
+    color: white;
+    padding: 10px 50px;
+    letter-spacing: .05em;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
 }
 
 .account-text {

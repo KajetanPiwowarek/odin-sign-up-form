@@ -11,7 +11,7 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="/css/sign-up.css" />
-    <script src="/js/sign-up.js" defer></script>
+    <script src="/js/validateSignUp.js" defer></script>
   </head>
   <body>
     <main class="card-container">
@@ -19,33 +19,34 @@
         <h1 class="company-name"><a href="/pages/index.html">Hot Desk</a></h1>
         <img src="/images/desk.png" class="image-desk" alt="Desk" />
       </div>
-      <form class="form" method="post" action="">
+      <form class="form" method="post" action="" novalidate>
         <div class="form-container">
           <h1 class="header">Sign up</h1>
           <div class="input">
-            <label for="first-name"></label>
+            <label for="firstName"></label>
             <input
               type="text"
               name="first_name"
-              id="first-name"
+              id="firstName"
+              class="firstName"
               placeholder=""
               required
             />
             <span>First Name</span>
-            <div class="error"></div>
+            <div id="errorFirstName" class="error"></div>
           </div>
 
           <div class="input">
-            <label for="last-name"></label>
+            <label for="lastName"></label>
             <input
               type="text"
               name="last_name"
-              id="last-name"
+              id="lastName"
               placeholder=""
               required
             />
             <span>Last Name</span>
-            <div class="error"></div>
+            <div id="errorLastName" class="error"></div>
           </div>
 
           <div class="input">
@@ -58,45 +59,49 @@
               required
             />
             <span>E-mail</span>
-            <div class="error"></div>
+            <div id="errorEmail" class="error"></div>
           </div>
 
           <div class="input">
-            <label for="phone"> </label>
-            <input type="tel" name="phone" id="phone" placeholder="" required />
+            <label for="phoneNumber"> </label>
+            <input
+              type="tel"
+              name="phone_number"
+              id="phoneNumber"
+              placeholder=""
+              required
+            />
             <span>Phone</span>
-            <div class="error"></div>
+            <div id="errorPhoneNumber" class="error"></div>
           </div>
 
           <div class="input">
-            <label for="user-password"></label>
+            <label for="password"></label>
             <input
               type="password"
-              name="user_password"
-              id="user-password"
+              name="password"
+              id="password"
               placeholder=""
-              class="user-password"
               required
             />
             <span>Password</span>
-            <div class="error"></div>
+            <div id="errorPassword" class="error"></div>
           </div>
 
           <div class="input">
-            <label for="user-password-confirm"></label>
+            <label for="passwordConfirm"></label>
             <input
               type="password"
-              id="user-password-confirm"
+              id="passwordConfirm"
               placeholder=""
-              class="password-confirmation"
               required
             />
             <span>Confirm Password</span>
-            <div class="error"></div>
+            <div id="errorPasswordConfirm" class="error"></div>
           </div>
 
           <div id="account-container">
-            <button type="submit" class="btn-create-account">
+            <button type="button" id="btnCreateAccount" class="btnCreateAccount" disabled>
               Create Account
             </button>
             <p class="account-text">

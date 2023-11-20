@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HotDesk: Main Page</title>
+    <link
+      rel="shortcut icon"
+      href="/images/workplace.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/mainPage.css" />
+    <script src="/js/mainPage.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section
+        class="panel"
+        onmouseenter="openPanel()"
+        onmouseleave="closePanel()"
+      >
+        <div class="upperPanel">
+          <span>
+            <img src="/images/workplace.png" alt="desk" />
+            <a class="links" href="mainPage.html"
+              ><p class="panelText">HotDesk</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/calendar.png" alt="calendar" />
+            <a class="links" href="calendarPage.html"
+              ><p class="panelText">Calendar</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/booking.png" alt="booking" />
+            <a class="links" href="bookingPage.html"
+              ><p class="panelText">Booking</p></a
+            >
+          </span>
+        </div>
+        <div class="downPanel">
+          <span>
+            <img src="/images/admin.png" alt="admin" />
+            <a class="links" href="adminPage.html"
+              ><p class="panelText">Admin</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/logout.png" alt="logout" />
+            <a class="links" href="/pages/index.html"
+              ><p class="panelText">LogOut</p></a
+            >
+          </span>
+          <span >
+            <img src="/images/user.png" alt="user" />
+            <a class="links" href="userPage.html"
+              ><p class="panelText">User</p></a
+            >
+          </span>
+        </div>
+      </section>
+      <section class="main">
+        <div class="leftContainer">
+          <div class="homeInfo">
+            <h2 class="title">HotDesk</h2>
+            <p class="description">
+              Hot Desk revolutionizes the way professionals work with a seamless
+              online platform. Designed for the modern workplace, Hot Desk
+              allows users to effortlessly log in and reserve a desk within
+              their company's setup. This innovative website transforms the
+              conventional hot desk concept, empowering individuals to create
+              their personalized work environment. Say goodbye to traditional
+              office hassles and embrace the flexibility of Hot Desk, where
+              convenience meets customization in the world of workspace
+              solutions.
+            </p>
+          </div>
+          <div class="calndarInfo">
+            <h2 class="title">Calendar</h2>
+            <p class="description">
+              The Calendar View provides a comprehensive visual representation of
+              desk bookings, allowing users to efficiently manage and track desk
+              usage. This intuitive interface offers a clear overview of who has
+              booked which desk on a particular day and at what specific hours,
+              streamlining the hot desk reservation process.
+            </p>
+            <p class="description">
+              -> Check <span class="highlight">WHO</span> booked
+              <span class="highlight">WHICH</span> desk
+            </p>
+            <p class="description">
+              -> Check <span class="highlight">WHEN</span> and at
+              <span class="highlight">WHAT</span> time
+            </p>
+
+            <a href="calendarPage.html">See Calendar...</a>
+          </div>
+          <div class="bookingInfo">
+            <h2 class="title">Booking</h2>
+            <p class="description">The Booking View  offers users a seamless and interactive experience to discover, choose, and reserve available desks. This feature provides a clear overview of desk availability on specific dates, empowering users to efficiently plan their workspace usage.</p>
+            <a href="bookingPage.html">Book Now...</a>
+          </div>
+        </div>
+        <div class="rightContainer">
+          <div class="notifications">
+            <h2 class="title">Notifications</h2>
+            <span>
+              <img src="/images/calendar.png" alt="calendar">
+              <h3 class="subtitle">Bookings</h3>
+            </span>
+            <div class="myBookings">
+                
+            </div>
+            <span>
+              <img src="/images/messages.png" alt="message">
+              <h3 class="subtitle">Messages</h3>
+            </span>
+            <div class="myMessages">
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
