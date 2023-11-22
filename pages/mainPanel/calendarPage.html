@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HotDesk: Main Page</title>
+    <link
+      rel="shortcut icon"
+      href="/images/workplace.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="/css/mainPanelCss/calendarPage.css" />
+    <script src="/js/mainPanelScripts/calendarPage.js" defer></script>
+  </head>
+  <body>
+    <main class="container">
+      <section
+        class="panel"
+        onmouseenter="openPanel()"
+        onmouseleave="closePanel()"
+      >
+        <div class="upperPanel">
+          <span>
+            <img src="/images/workplace.png" alt="desk" />
+            <a class="links" href="mainPage.html"
+              ><p class="panelText">HotDesk</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/calendar.png" alt="calendar" />
+            <a class="links" href="calendarPage.html"
+              ><p class="panelText">Calendar</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/booking.png" alt="booking" />
+            <a class="links" href="bookingPage.html"
+              ><p class="panelText">Booking</p></a
+            >
+          </span>
+        </div>
+        <div class="downPanel">
+          <span>
+            <img src="/images/admin.png" alt="admin" />
+            <a class="links" href="adminPage.html"
+              ><p class="panelText">Admin</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/logout.png" alt="logout" />
+            <a class="links" href="/pages/index.html"
+              ><p class="panelText">LogOut</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/user.png" alt="user" />
+            <a class="links" href="userPage.html"
+              ><p class="panelText">User</p></a
+            >
+          </span>
+        </div>
+      </section>
+      <section class="main">
+        <div class="tableContainer">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th class="today"></th>
+                <th class="secondDay"></th>
+                <th class="thirdDay"></th>
+                <th class="forthDay"></th>
+                <th class="fifthDay"></th>
+                <th class="sixthDay"></th>
+                <th class="seventhDay"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="hour8">8:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour9">9:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour10">10:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour11">11:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour12">12:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour13">13:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour14">14:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour15">15:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour16">16:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+              <tr>
+                <td class="hour17">17:00</td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+                <td>
+                  <p class="userInfo"></p>
+                  <p class="deskInfo"></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
