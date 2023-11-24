@@ -15,10 +15,10 @@
   <body>
     <main class="container">
       <div class="nav-bar">
-        <a href="mainPanel/mainPage.html"><h1 class="company-name">Hot Desk</h1></a>
+        <h1 class="company-name">Hot Desk</h1></a>
         <div class="navigation">
-          <a href="/pages/login.html">Login</a>
-          <a href="/pages/signUp.html">Sign-up</a>
+          <a href="/login" class="<%= navLocation == 'login' ? 'active' : '' %>">Login</a>
+          <a href="/signup" class="<%= navLocation == 'signup' ? 'active' : '' %>">Sign-up</a>
         </div>
       </div>
       <div class="main-container">

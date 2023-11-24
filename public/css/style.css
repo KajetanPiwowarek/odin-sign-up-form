@@ -8,6 +8,8 @@
     --form-txt:  rgba(255, 255, 255, .5);
     --darky: #1d2b3a;
     --light-grey: rgb(105, 105, 105);
+    --light-darky: rgba(79, 131, 187, 0.808);
+    --lighter-darky: rgba(122, 177, 235, 0.808);
 }
 
 * {
@@ -18,7 +20,7 @@
 }
 
 body {
-    background-color: var(--dusky-green);
+    background-color: var(--lighter-darky);
 }
 
 .container {

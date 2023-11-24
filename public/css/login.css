@@ -8,45 +8,45 @@
     --form-txt:  rgba(255, 255, 255, .5);
     --darky: #1d2b3a;
     --light-grey: rgb(105, 105, 105);
+    --light-darky: rgba(79, 131, 187, 0.808);
+    --lighter-darky: rgba(122, 177, 235, 0.808);
 }
 
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
-    overflow: hidden;
-    background-color: var(--dusky-green);
+    display: flex;
+    background-color: var(--lighter-darky);
 }
 
 .card-container {
-    display: grid;
-    grid-template-columns: calc(100% - 60%) auto;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem auto;
+    padding: 5rem;
+    border-radius: 1rem;
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
     background-color: var(--darky);
 }
 
-.image-container{
-    display: grid;
-    background-color: var(--dusky-green);
-    color: white;
-}
-
-.image-container > img {
+.container {
+    max-width: 300px;
     width: 100%;
 }
 
 .company-name {
     display: flex;
     font-size: 34px;
-    text-align: left;
+    text-align: center;
     height: 70px;
-    align-self: flex-start;
-    padding: 2% 0 0 5%;
+    justify-content: center;
+    align-self: center;
 }
 
 .company-name > a {
@@ -55,18 +55,15 @@ body {
 }
 
 .form-container {
-    width: 50vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 45px;
-    padding: 50px;
+    display: block;
     color: var(--form-txt);
 }
 .header {
-    grid-column: 1 / -1;
+    display: flex;
     letter-spacing: .06em;
-    margin-bottom: 30px;
-    font-size: 40px;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 20px;
     color: white;
 }
 input {
@@ -75,7 +72,7 @@ input {
     border: 0;
     border-bottom: 1px solid rgb(0,0,0,.4);
     padding: 6px 6px 6px 10px;
-    margin-top: 5px;
+    margin-top: 2rem;
     background-color: rgba(255, 255, 255, 0);
     transition: all .5s ease-in;
     color: var(--opac-white);
@@ -85,6 +82,20 @@ span {
     text-transform: uppercase;
     font-size: 15px;
     transition: all .4s;
+}
+
+.btnLogin{
+    text-align: center;
+    border: 0;
+    background-color: var(--light-darky);
+    color: white;
+    padding: 10px 50px;
+    letter-spacing: .05em;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
 }
 
 form {
@@ -97,7 +108,7 @@ form {
     position: relative;
 }
 
-span:not(.login-text) {
+span:not(.sign-up-text) {
     position: absolute;
     left: 0;
     top: 0;
@@ -106,6 +117,7 @@ span:not(.login-text) {
 }
 
 input:focus ~ span,
+input:valid ~ span,
 input:not(:placeholder-shown) ~ span{
     font-size: 10px;
     transform: translateX(4px) translateY(-16px);
@@ -141,25 +153,12 @@ input:-webkit-autofill {
     padding-left: 5px;
 }
 
-.btnCreateAccount {
-    border: 0;
-    background-color: var(--dusky-green);
-    color: white;
-    padding: 10px 50px;
-    letter-spacing: .05em;
-    border-radius: 5px;
-    margin-top: 20px;
-    font-size: 17px;
-    outline: none;
-    cursor: pointer;
-}
-
 .account-text {
     margin-top: 15px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
-.login-text {
-    color: var(--dusky-green);
+.sign-up-text {
+    color: var(--lighter-darky);
 }
 
