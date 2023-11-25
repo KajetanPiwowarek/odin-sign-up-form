@@ -30,7 +30,8 @@ const session = require('express-session');
 const authorization = require("./utils/authorization");
 app.use(session({
     secret: 'SECRET',
-    resave: false
+    resave: false,
+    saveUninitialized: false,
 }));
 
 
