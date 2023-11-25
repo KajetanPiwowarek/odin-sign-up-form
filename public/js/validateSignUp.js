@@ -4,15 +4,17 @@ var btnCreateAccount = document.querySelector(".btnCreateAccount");
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
     validateInput(input);
+    checkAllInputs();
   });
 });
 
-btnCreateAccount.addEventListener("click", (event) => {
+function checkAllInputs() {
   if (inputs.every((input) => input.classList.contains("valid"))) {
-    //zapisz uzytkownika i przekieruj na panel admina
-    window.location.href = "./index.html";
+    btnCreateAccount.disabled = false;
+  } else {
+    btnCreateAccount.disabled = true;
   }
-});
+}
 
 function validateInput(input) {
   const { id, value } = input;

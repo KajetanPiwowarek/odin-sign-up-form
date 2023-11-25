@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/logout', function(req, res, next) {
+router.get('/', function(req, res, next) {
   req.session.loggedUser = undefined;
-  res.render('/', { navLocation: 'main' });
+  res.render('index', { navLocation: 'main' });
 });
 
 module.exports = router;

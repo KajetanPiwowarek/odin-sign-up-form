@@ -19,9 +19,6 @@ const User = sequelize.define('User', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: {
-      msg: "Podany adres email jest już używany"
-    },
   },
   phoneNumber: {
     type: Sequelize.STRING,

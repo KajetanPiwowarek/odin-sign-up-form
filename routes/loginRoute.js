@@ -7,6 +7,6 @@ router.get('/', function(req, res, next) {
   res.render('login', { navLocation: 'login' });
 });
 
-router.post('/login', loginController.login);
+router.post('/', loginController.login);
 
 module.exports = router;

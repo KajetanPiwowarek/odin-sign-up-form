@@ -26,7 +26,7 @@ exports.createUser = (data) => {
     console.log(JSON.stringify(data));
 
     return User.create({
-        fitstName: data.fitstName,
+        firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
         phoneNumber: data.phoneNumber,
