@@ -1,9 +1,8 @@
-CREATE SCHEMA IF NOT EXISTS `project-inz-db`;
+CREATE SCHEMA [project-inz-db];
 
--- tables
 -- Table: User
 CREATE TABLE Users (
-    ID int NOT NULL AUTO_INCREMENT,
+    ID int NOT NULL IDENTITY(1,1),
     FirstName varchar(255) NOT NULL,
     LastName varchar(100) NOT NULL,
     Email varchar(100) NOT NULL,
@@ -14,7 +13,7 @@ CREATE TABLE Users (
 
 -- Table: Desk
 CREATE TABLE Desks (
-    ID int NOT NULL,
+    ID int NOT NULL IDENTITY(1,1),
     DeskName varchar(255) NOT NULL,
     DeskNumber varchar(100) NOT NULL,
     Floor varchar(100) NOT NULL,
@@ -24,21 +23,14 @@ CREATE TABLE Desks (
 
 -- Table: Booking
 CREATE TABLE Bookings (
-    ID int NOT NULL,
+    ID int NOT NULL IDENTITY(1,1),
     User_ID int NOT NULL,
     Desk_ID int NOT NULL,
     BookingDate date NOT NULL,
     BookingTime time NOT NULL,
-    CONSTRAINT Booking_pk PRIMARY KEY (ID)
+    CONSTRAINT Booking_pk PRIMARY KEY (ID),
+    CONSTRAINT Booking_Desk FOREIGN KEY (Desk_ID) REFERENCES Desks (ID),
+    CONSTRAINT Booking_User FOREIGN KEY (User_ID) REFERENCES Users (ID)
 );
-
--- foreign keys
--- Reference: Booking_Desk (table: Booking)
-ALTER TABLE Bookings ADD CONSTRAINT Booking_Desk FOREIGN KEY Booking_Desk (Desk_ID)
-    REFERENCES Desks (ID);
-
--- Reference: Booking_User (table: Booking)
-ALTER TABLE Bookings ADD CONSTRAINT Booking_User FOREIGN KEY Booking_User (User_ID)
-    REFERENCES Users (ID);
 
 -- End of file.
