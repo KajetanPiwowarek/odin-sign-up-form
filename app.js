@@ -16,13 +16,13 @@ const actorRouter = require('./routes/actorRoute');
 const actorApiRouter = require('./routes/api/ActorApiRoute');
 */
 
-/* Stworzenie polaczen w bazie danych 
+// database connection
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
   .catch(err => {
     console.log(err);
   });
-*/
+
 
 var app = express();
 
