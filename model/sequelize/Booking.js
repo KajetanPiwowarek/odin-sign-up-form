@@ -14,13 +14,13 @@ const Booking = sequelize.define('Booking', {
   },
   bookingTime: {
     type: Sequelize.TIME,
-    allowNull: true,
+    allowNull: false,
   },
-  idFilm: {
+  idUser: {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
-  idActor: {
+  idDesk: {
     type: Sequelize.INTEGER,
     allowNull: false,
   }
