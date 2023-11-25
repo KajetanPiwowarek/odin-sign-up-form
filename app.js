@@ -3,8 +3,13 @@ var express = require('express');
 var path = require('path');
 
 var indexRouter = require('./routes/index');
-var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/signup');
+var loginRouter = require('./routes/loginRoute');
+var signupRouter = require('./routes/signupRoute');
+var adminRouter = require('./routes/mainPanelRoutes/adminRoute');
+var bookingRouter = require('./routes/mainPanelRoutes/bookingRoute');
+var calendarRouter = require('./routes/mainPanelRoutes/calendarRoute');
+var mainRouter = require('./routes/mainPanelRoutes/mainRoute');
+var userRouter = require('./routes/mainPanelRoutes/userRoute');
 
 /* Routery
 const actorRouter = require('./routes/actorRoute');
@@ -33,6 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
+app.use('/admin', adminRouter);
+app.use('/booking', bookingRouter);
+app.use('/calendar', calendarRouter);
+app.use('/home', mainRouter);
+app.use('/user', userRouter);
 
 /*
 app.use('/actors', actorRouter);
