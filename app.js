@@ -17,13 +17,12 @@ const actorApiRouter = require('./routes/api/ActorApiRoute');
 */
 
 // database connection
-/*
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
   .catch(err => {
     console.log(err);
   });
-*/
+
 
 
 var app = express();
