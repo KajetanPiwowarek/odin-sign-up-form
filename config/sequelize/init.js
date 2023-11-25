@@ -4,6 +4,8 @@ const User = require('../../model/sequelize/User');
 const Booking = require('../../model/sequelize/Booking');
 const Desk = require('../../model/sequelize/Desk');
 
+const authorization = require('../../utils/authorization');
+
 module.exports = () => {
   User.hasMany(Booking, {as: 'Bookings', foreignKey: {name: 'idUser', allowNull: false}, constraints: true, onDelete: 'CASCADE'});
   Booking.belongsTo(User, {as: 'User', foreignKey: {name: 'idUser', allowNull: false}});
@@ -19,7 +21,7 @@ module.exports = () => {
     .then(Users => {
       if( !Users || Users.length == 0 ){
         return User.bulkCreate([
-          {firstName: 'Admin', lastName: 'Admin', email: 'admin@gmail.com', phoneNumber: '123456789', password: 'admin'},
+          {firstName: 'Admin', lastName: 'Admin', email: 'admin@gmail.com', phoneNumber: '123456789', password: authorization.hashPassword('admin')},
         ])
         .then( () => {
           return User.findAll();

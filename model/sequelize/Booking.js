@@ -8,11 +8,11 @@ const Booking = sequelize.define('Booking', {
     allowNull: false,
     primaryKey: true,
   },
-  BookingDate: {
+  bookingDate: {
     type: Sequelize.DATE,
     allowNull: false
   },
-  BookingTime: {
+  bookingTime: {
     type: Sequelize.TIME,
     allowNull: true,
   },

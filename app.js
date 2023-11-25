@@ -4,6 +4,7 @@ var path = require('path');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/loginRoute');
+var logoutRouter = require('./routes/logoutRoute');
 var signupRouter = require('./routes/signupRoute');
 var adminRouter = require('./routes/mainPanelRoutes/adminRoute');
 var bookingRouter = require('./routes/mainPanelRoutes/bookingRoute');
@@ -23,9 +24,24 @@ sequelizeInit()
     console.log(err);
   });
 
-
-
 var app = express();
+
+const session = require('express-session');
+const authorization = require("./utils/authorization");
+app.use(session({
+    secret: 'SECRET',
+    resave: false
+}));
+
+
+app.use((req, res, next) => {
+    const loggedUser = req.session.loggedUser;
+    res.locals.loggedUser = loggedUser;
+    if(!res.locals.loginError) {
+        res.locals.loginError = undefined;
+    }
+    next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'pages'));
@@ -39,11 +55,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
-app.use('/admin', adminRouter);
-app.use('/booking', bookingRouter);
-app.use('/calendar', calendarRouter);
-app.use('/home', mainRouter);
-app.use('/user', userRouter);
+app.use('/logout', authorization.permitAuthenticatedUser, logoutRouter);
+app.use('/admin', authorization.permitAuthenticatedUser , adminRouter);
+app.use('/booking', authorization.permitAuthenticatedUser, bookingRouter);
+app.use('/calendar', authorization.permitAuthenticatedUser, calendarRouter);
+app.use('/home', authorization.permitAuthenticatedUser, mainRouter);
+app.use('/user', authorization.permitAuthenticatedUser, userRouter);
 
 /*
 app.use('/actors', actorRouter);
