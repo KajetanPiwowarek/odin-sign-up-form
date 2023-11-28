@@ -1,4 +1,4 @@
-const createSequelizeInstance = require("../../config/sequelize/sequelize");
+const sequelize = require("../../config/sequelize/sequelize");
 
 const User = require("../../model/sequelize/User");
 const Booking = require("../../model/sequelize/Booking");
@@ -6,9 +6,7 @@ const Desk = require("../../model/sequelize/Desk");
 
 const authorization = require("../../utils/authorization");
 
-async function sequelizeInit() {
-  const sequelize = await createSequelizeInstance();
-
+module.exports = () => {
   User.hasMany(Booking, {
     as: "Bookings",
     foreignKey: { name: "idUser", allowNull: false },
@@ -88,6 +86,4 @@ async function sequelizeInit() {
         return Desks;
       }
     });
-}
-
-module.exports = sequelizeInit;
+};
