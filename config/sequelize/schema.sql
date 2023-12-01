@@ -1,3 +1,4 @@
+/*
 CREATE SCHEMA [project-inz-db];
 
 -- Table: User
@@ -34,3 +35,4 @@ CREATE TABLE Bookings (
 );
 
 -- End of file.
+*/

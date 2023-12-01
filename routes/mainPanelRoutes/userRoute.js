@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const userController = require('../../controllers/mainPageControllers/userController');
 
-/* GET login page. */
-router.get('/', function(req, res, next) {
-  res.render('mainPanel/userPage', { navLocation: 'user' });
-});
+router.get('/', userController.userData);
 
 module.exports = router;

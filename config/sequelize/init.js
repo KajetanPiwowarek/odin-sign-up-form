@@ -30,7 +30,7 @@ module.exports = () => {
 
   let allUsers, allDesks;
   return sequelize
-    .sync({ force: true })
+    .sync() // { force: true } <- droping all 'reset'
     .then(() => {
       return User.findAll();
     })
@@ -39,9 +39,9 @@ module.exports = () => {
         return User.bulkCreate([
           {
             firstName: "Admin",
-            lastName: "Admin",
-            email: "admin@gmail.com",
-            phoneNumber: "123456789",
+            lastName: "",
+            email: "admin",
+            phoneNumber: "",
             password: authorization.hashPassword("admin"),
           },
         ]).then(() => {
@@ -58,9 +58,7 @@ module.exports = () => {
     .then((Desks) => {
       if (!Desks || Desks.length == 0) {
         return Desk.bulkCreate([
-          { deskName: "adam", deskNumber: "207", floor: "2", type: "standing" },
-          { deskName: "bob", deskNumber: "108", floor: "1", type: "sitting" },
-          { deskName: "bob", deskNumber: "104", floor: "1", type: "sitting" },
+          // create Desks
         ]).then(() => {
           return Desk.findAll();
         });
@@ -75,12 +73,7 @@ module.exports = () => {
     .then((Bookings) => {
       if (!Bookings || Bookings.length == 0) {
         return Booking.bulkCreate([
-          {
-            idUser: allUsers[0].idUser,
-            idDesk: allDesks[0].idDesk,
-            BookingDate: "2023-11-28",
-            BookingTime: "12:00",
-          },
+          //create Bookings
         ]);
       } else {
         return Desks;

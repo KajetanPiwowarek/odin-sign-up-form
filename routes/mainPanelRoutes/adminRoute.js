@@ -1,9 +1,11 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
+const adminController = require("../../controllers/mainPageControllers/adminController");
 
-/* GET login page. */
-router.get('/', function(req, res, next) {
-  res.render('mainPanel/adminPage', { navLocation: 'admin' });
+router.get("/", function (req, res, next) {
+  res.render("mainPanel/adminPage", { info: "", navLocation: "admin" });
 });
+
+router.post("/", adminController.createDesk);
 
 module.exports = router;

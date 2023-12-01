@@ -12,11 +12,6 @@ var calendarRouter = require('./routes/mainPanelRoutes/calendarRoute');
 var mainRouter = require('./routes/mainPanelRoutes/mainRoute');
 var userRouter = require('./routes/mainPanelRoutes/userRoute');
 
-/* Routery
-const actorRouter = require('./routes/actorRoute');
-const actorApiRouter = require('./routes/api/ActorApiRoute');
-*/
-
 // database connection
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
@@ -62,11 +57,6 @@ app.use('/booking', authorization.permitAuthenticatedUser, bookingRouter);
 app.use('/calendar', authorization.permitAuthenticatedUser, calendarRouter);
 app.use('/home', authorization.permitAuthenticatedUser, mainRouter);
 app.use('/user', authorization.permitAuthenticatedUser, userRouter);
-
-/*
-app.use('/actors', actorRouter);
-app.use('/api/actors', actorApiRouter);
-*/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

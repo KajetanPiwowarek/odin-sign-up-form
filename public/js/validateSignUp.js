@@ -1,5 +1,16 @@
 var inputs = document.querySelectorAll("input");
+var btnContainer = document.querySelector(".btnContainer");
 var btnCreateAccount = document.querySelector(".btnCreateAccount");
+
+btnCreateAccount.disabled = true;
+
+function checkAllInputs() {
+  if (Array.from(inputs).every((input) => input.classList.contains("valid"))) {
+    btnCreateAccount.disabled = false;
+  } else {
+    btnCreateAccount.disabled = true;
+  }
+}
 
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
@@ -7,14 +18,6 @@ inputs.forEach((input) => {
     checkAllInputs();
   });
 });
-
-function checkAllInputs() {
-  if (inputs.every((input) => input.classList.contains("valid"))) {
-    btnCreateAccount.disabled = false;
-  } else {
-    btnCreateAccount.disabled = true;
-  }
-}
 
 function validateInput(input) {
   const { id, value } = input;
@@ -25,12 +28,12 @@ function validateInput(input) {
       if (!checkRequired(value)) {
         valid = false;
         document.getElementById("errorFirstName").innerText =
-          "Pole jest wymagane";
+          "This field is required";
         break;
       } else if (!checkTextLengthRange(value, 2, 30)) {
         valid = false;
         document.getElementById("errorFirstName").innerText =
-          "Pole powinno zawierać od 2 do 30 znaków";
+          "This field should contain from 2 to 30 characters";
         break;
       }
       valid = true;
@@ -40,12 +43,12 @@ function validateInput(input) {
       if (!checkRequired(value)) {
         valid = false;
         document.getElementById("errorLastName").innerText =
-          "Pole jest wymagane";
+          "This field is required";
         break;
       } else if (!checkTextLengthRange(value, 2, 30)) {
         valid = false;
         document.getElementById("errorLastName").innerText =
-          "Pole powinno zawierać od 2 do 30 znaków";
+          "This field should contain from 2 to 30 characters";
         break;
       }
       valid = true;
@@ -54,17 +57,17 @@ function validateInput(input) {
     case "email":
       if (!checkRequired(value)) {
         valid = false;
-        document.getElementById("errorEmail").innerText = "Pole jest wymagane";
+        document.getElementById("errorEmail").innerText = "This field is required";
         break;
       } else if (!checkTextLengthRange(value, 2, 60)) {
         valid = false;
         document.getElementById("errorEmail").innerText =
-          "Pole powinno zawierać od 2 do 60 znaków";
+          "This field should contain from 2 to 60 characters";
         break;
       } else if (!checkEmail(value)) {
         valid = false;
         document.getElementById("errorEmail").innerText =
-          "Pole powinno zawierać prawidłowy adres email";
+          "This field should contain a correct email";
         break;
       }
       valid = true;
@@ -74,17 +77,17 @@ function validateInput(input) {
       if (!checkRequired(value)) {
         valid = false;
         document.getElementById("errorPhoneNumber").innerText =
-          "Pole jest wymagane";
+          "This field is required";
         break;
       } else if (!checkTextLengthRange(value, 0, 9)) {
         valid = false;
         document.getElementById("errorPhoneNumber").innerText =
-          "Pole powinno zawierać maksymalnie 9 znaków";
+          "This field should contain a maximum of 9 characters";
         break;
       } else if (!checkPhoneNumber(value)) {
         valid = false;
         document.getElementById("errorPhoneNumber").innerText =
-          "Pole powinno zawierać poprawny numer telefonu (np. 222333444)";
+          "This field should contain a valid phone number";
         break;
       }
       valid = true;
@@ -94,12 +97,17 @@ function validateInput(input) {
       if (!checkRequired(value)) {
         valid = false;
         document.getElementById("errorPassword").innerText =
-          "Pole jest wymagane";
+          "This field is required";
         break;
       } else if (!checkTextLengthRange(value, 5)) {
         valid = false;
         document.getElementById("errorPassword").innerText =
-          "Pole powinno zawierać więcej niż 5 znaków";
+          "This field should contain more than 5 characters";
+        break;
+      } else if (!checkPassword(value)) {
+        valid = false;
+        document.getElementById("errorPassword").innerText =
+          "This field should contain at least one number, one symbol, one uppercase letter and one lowercase letter";
         break;
       }
       valid = true;
@@ -109,11 +117,11 @@ function validateInput(input) {
       if (!checkRequired(value)) {
         valid = false;
         document.getElementById("errorPasswordConfirm").innerText =
-          "Pole jest wymagane";
+          "This field is required";
         break;
       } else if (!checkPasswordConfirmation(value)) {
         valid = false;
-        errorPasswordConfirm.innerText = "Pole powinno zawierać to samo hasło";
+        errorPasswordConfirm.innerText = "The field should contain the same password";
         break;
       }
       valid = true;
@@ -167,6 +175,14 @@ function checkPhoneNumber(value) {
     return false;
   }
   const pattern = /(\d{9})/;
+  return pattern.test(value);
+}
+
+function checkPassword(value) {
+  if (!value) {
+    return false;
+  }
+  const pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)/;
   return pattern.test(value);
 }
 
