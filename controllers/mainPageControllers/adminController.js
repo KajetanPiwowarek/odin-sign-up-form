@@ -12,6 +12,7 @@ exports.createDesk = (req, res, next) => {
       .catch(err => {
           console.log(err.errors)
           res.render('mainPanel/adminPage', {
+            info: "Failed to add Desk",
               navLocation: 'admin',
           })
       });

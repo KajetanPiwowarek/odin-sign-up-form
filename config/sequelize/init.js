@@ -76,7 +76,7 @@ module.exports = () => {
           //create Bookings
         ]);
       } else {
-        return Desks;
+        return Booking;
       }
     });
 };

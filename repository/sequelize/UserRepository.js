@@ -1,8 +1,7 @@
-const Sequelize = require('sequelize');
+const Desk = require("../../model/sequelize/Desk");
+const Booking = require("../../model/sequelize/Booking");
+const User = require("../../model/sequelize/User");
 
-//const Zakup = require('../../model/sequelize/Zakup');
-const User = require('../../model/sequelize/User');
-//const Przedmiot = require('../../model/sequelize/Przedmiot');
 const authorization = require("../../utils/authorization");
 
 exports.getUsers = () => {

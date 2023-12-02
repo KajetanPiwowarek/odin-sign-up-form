@@ -1,9 +1,6 @@
-const Sequelize = require("sequelize");
-
-//const Zakup = require('../../model/sequelize/Zakup');
 const Desk = require("../../model/sequelize/Desk");
-//const Przedmiot = require('../../model/sequelize/Przedmiot');
-const authorization = require("../../utils/authorization");
+const Booking = require("../../model/sequelize/Booking");
+const User = require("../../model/sequelize/User");
 
 exports.getDesks = () => {
   return Desk.findAll();
@@ -40,4 +37,3 @@ exports.createDesk = (data) => {
 exports.updateDesk = (DeskId, data) => {
   return Desk.update(data, { where: { id: DeskId } });
 };
-
