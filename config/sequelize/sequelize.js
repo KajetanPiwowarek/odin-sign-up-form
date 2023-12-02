@@ -2,11 +2,11 @@ require('dotenv').config();
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-  process.env.dbName,
-  process.env.dbUser,
-  process.env.dbPassword,
+  'project-inz-db',
+  'admin123',
+  'DQ75}*.*5f!ib2!DQ75}*.*5f!ib2!',
   {
-    host: process.env.dbHost,
+    host: 'project-inz-server.database.windows.net',
     dialect: "mssql",
     dialectOptions: {
       options: {
