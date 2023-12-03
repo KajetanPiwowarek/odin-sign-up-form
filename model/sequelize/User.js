@@ -28,6 +28,10 @@ const User = sequelize.define("User", {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  idSession: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  }
 });
 
 module.exports = User;

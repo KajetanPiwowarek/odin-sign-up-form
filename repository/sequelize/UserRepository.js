@@ -46,3 +46,7 @@ exports.findByEmail = (email) => {
         where: {email: email}
     });
 }
+
+exports.findById = (UserId) => {
+    return User.findByPk(UserId);
+}

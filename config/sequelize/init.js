@@ -30,7 +30,7 @@ module.exports = () => {
 
   let allUsers, allDesks;
   return sequelize
-    .sync() // { force: true } <- droping all 'reset'
+    .sync()  // { force: true } <- droping all 'reset'
     .then(() => {
       return User.findAll();
     })

@@ -3,9 +3,7 @@ var router = express.Router();
 const loginController = require('../controllers/loginController');
 
 /* GET login page. */
-router.get('/', function(req, res, next) {
-  res.render('login', { navLocation: 'login' });
-});
+router.get('/', loginController.home);
 
 router.post('/', loginController.login);
 

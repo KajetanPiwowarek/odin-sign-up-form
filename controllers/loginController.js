@@ -1,27 +1,67 @@
-const UserRepository = require('../repository/sequelize/UserRepository');
+const UserRepository = require("../repository/sequelize/UserRepository");
 const authorization = require("../utils/authorization");
-
+const generateNewSessionId = require("../utils/sessionIdGenerator");
 
 exports.login = (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    UserRepository.findByEmail(email)
-        .then(user => {
-            if(!user) {
-                res.render('login', {
-                    navLocation: 'login',
-                })
-            } else if(authorization.comparePasswords(password, user.password) === true)  {
-                req.session.loggedUser = user;
-                res.redirect('/home');
-            } else {
-                res.render('login', {
-                    navLocation: 'login',
-                })
-            }
-        })
-        .catch(err => {
-            console.log(err);
+  const email = req.body.email;
+  const password = req.body.password;
+  UserRepository.findByEmail(email)
+    .then((user) => {
+      if (!user) {
+        res.render("login", {
+          navLocation: "login",
+          info: "",
         });
+      } else if (
+        authorization.comparePasswords(password, user.password) === true
+      ) {
+        if (user.idSession) {
+          res.render("login", {
+            navLocation: "login",
+            info: "User is already logged in.",
+          });
+        } else {
+          const newSessionId = generateNewSessionId();
 
-}
+          user.idSession = newSessionId;
+          user.save();
+
+          req.session.loggedUser = user;
+          req.session.idSession = newSessionId;
+
+          res.redirect("/home");
+        }
+      } else {
+        res.render("login", {
+          navLocation: "login",
+          info: "",
+        });
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.home = (req, res, next) => {
+  if(req.session.loggedUser){
+    const user = req.session.loggedUser;
+  UserRepository.findById(user.idUser)
+    .then((user) => {
+      user.idSession = null;
+      user.save();
+
+      req.session.destroy((err) => {
+        if (err) {
+          console.error("Error destroying session:", err);
+        }
+        res.redirect("/login");
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  } else {
+    res.render('login', { navLocation: 'login', info: "", });
+  }
+};

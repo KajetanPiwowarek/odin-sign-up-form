@@ -4,6 +4,7 @@
     --green: rgb(33, 250, 131);
     --red: rgb(252, 86, 108);
     --dusky-green: rgb(6, 170, 94);
+    --dusky-red: rgb(179, 14, 36);
     --opac-white: rgba(255, 255, 255, .8);
     --form-txt:  rgba(255, 255, 255, .5);
     --darky: #1d2b3a;
@@ -160,5 +161,13 @@ input:-webkit-autofill {
 
 .sign-up-text {
     color: var(--lighter-darky);
+}
+
+.info {
+    text-align: center;
+    color: var(--dusky-red);
+    padding: 20px;
+    margin-top: 10px;
+    font-size: 15px;
 }
 
