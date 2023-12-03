@@ -16,9 +16,17 @@ exports.login = (req, res, next) => {
         authorization.comparePasswords(password, user.password) === true
       ) {
         if (user.idSession) {
-          res.render("login", {
-            navLocation: "login",
-            info: "User is already logged in.",
+          user.idSession = null;
+          user.save();
+
+          req.session.destroy((err) => {
+            if (err) {
+              console.error("Error destroying session:", err);
+            }
+            res.render("login", {
+              navLocation: "login",
+              info: "User is already logged in. (Clearing data)",
+            });
           });
         } else {
           const newSessionId = generateNewSessionId();
@@ -29,7 +37,7 @@ exports.login = (req, res, next) => {
           req.session.loggedUser = user;
           req.session.idSession = newSessionId;
 
-          if(user.idUser === 1){
+          if (user.idUser === 1) {
             res.render("mainPanel/mainPage", {
               navLocation: "admin",
             });
@@ -40,7 +48,7 @@ exports.login = (req, res, next) => {
       } else {
         res.render("login", {
           navLocation: "login",
-          info: "Wrong password",
+          info: "Wrong",
         });
       }
     })
@@ -50,24 +58,24 @@ exports.login = (req, res, next) => {
 };
 
 exports.home = (req, res, next) => {
-  if(req.session.loggedUser){
+  if (req.session.loggedUser) {
     const user = req.session.loggedUser;
-  UserRepository.findById(user.idUser)
-    .then((user) => {
-      user.idSession = null;
-      user.save();
+    UserRepository.findById(user.idUser)
+      .then((user) => {
+        user.idSession = null;
+        user.save();
 
-      req.session.destroy((err) => {
-        if (err) {
-          console.error("Error destroying session:", err);
-        }
-        res.render('login', { navLocation: 'login', info: "", });
+        req.session.destroy((err) => {
+          if (err) {
+            console.error("Error destroying session:", err);
+          }
+          res.render("login", { navLocation: "login", info: "" });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
   } else {
-    res.render('login', { navLocation: 'login', info: "", });
+    res.render("login", { navLocation: "login", info: "" });
   }
 };

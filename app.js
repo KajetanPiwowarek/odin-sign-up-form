@@ -12,6 +12,8 @@ var calendarRouter = require('./routes/mainPanelRoutes/calendarRoute');
 var mainRouter = require('./routes/mainPanelRoutes/mainRoute');
 var userRouter = require('./routes/mainPanelRoutes/userRoute');
 
+const UserRepository = require("./repository/sequelize/UserRepository");
+
 // database connection
 const sequelizeInit = require('./config/sequelize/init');
 sequelizeInit()
