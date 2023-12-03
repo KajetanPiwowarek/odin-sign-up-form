@@ -10,7 +10,7 @@ exports.login = (req, res, next) => {
       if (!user) {
         res.render("login", {
           navLocation: "login",
-          info: "",
+          info: "User doesn't exist",
         });
       } else if (
         authorization.comparePasswords(password, user.password) === true
@@ -29,12 +29,18 @@ exports.login = (req, res, next) => {
           req.session.loggedUser = user;
           req.session.idSession = newSessionId;
 
-          res.redirect("/home");
+          if(user.idUser === 1){
+            res.render("mainPanel/mainPage", {
+              navLocation: "admin",
+            });
+          } else {
+            res.redirect("/home");
+          }
         }
       } else {
         res.render("login", {
           navLocation: "login",
-          info: "",
+          info: "Wrong password",
         });
       }
     })
@@ -55,7 +61,7 @@ exports.home = (req, res, next) => {
         if (err) {
           console.error("Error destroying session:", err);
         }
-        res.redirect("/login");
+        res.render('login', { navLocation: 'login', info: "", });
       });
     })
     .catch((err) => {

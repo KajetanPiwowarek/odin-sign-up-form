@@ -1,0 +1,46 @@
+<section
+        class="panel"
+        onmouseenter="openPanel()"
+        onmouseleave="closePanel()"
+      >
+        <div class="upperPanel">
+          <span>
+            <img src="/images/workplace.png" alt="desk" />
+            <a class="links" href="/home"
+              ><p class="panelText">HotDesk</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/calendar.png" alt="calendar" />
+            <a class="links" href="/calendar"
+              ><p class="panelText">Calendar</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/booking.png" alt="booking" />
+            <a class="links" href="/booking"
+              ><p class="panelText">Booking</p></a
+            >
+          </span>
+        </div>
+        <div class="downPanel">
+          <span class="<%= navLocation == 'admin' ? 'active' : 'disactive' %>">
+            <img src="/images/admin.png" alt="admin" />
+            <a class="links" href="/admin"
+              ><p class="panelText">Admin</p></a
+            >
+          </span>
+          <span>
+            <img src="/images/logout.png" alt="logout" />
+            <a class="links" href="/logout"
+              ><p class="panelText">LogOut</p></a
+            >
+          </span>
+          <span >
+            <img src="/images/user.png" alt="user" />
+            <a class="links" href="/user"
+              ><p class="panelText">User</p></a
+            >
+          </span>
+        </div>
+      </section>

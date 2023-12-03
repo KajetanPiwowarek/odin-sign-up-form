@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET login page. */
 router.get('/', function(req, res, next) {
-  res.render('mainPanel/mainPage', { navLocation: 'home' });
+  if (req.session.loggedUser.idUser === 1) {
+    res.render("mainPanel/mainPage", {  navLocation: "admin" });
+  } else {
+    res.render("mainPanel/mainPage" , {  navLocation: "home" });
+  }
 });
 
 module.exports = router;
