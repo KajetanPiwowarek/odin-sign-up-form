@@ -1,6 +1,5 @@
 const DeskRepository = require("../../repository/sequelize/DeskRepository");
 const BookingRepository = require("../../repository/sequelize/BookingRepository");
-const UserRepository = require("../../repository/sequelize/UserRepository");
 
 exports.showBooking = (req, res, next) => {
   if (req.session.loggedUser.idUser === 1) {

@@ -32,7 +32,7 @@ exports.showCalendar = (req, res, next) => {
             allDesks: allDesks,
             allUsers: allUsers,
             allBookings: allBookings,
-            navLocation: "admin",
+            navLocation: "calendar",
           });
         })
       })
