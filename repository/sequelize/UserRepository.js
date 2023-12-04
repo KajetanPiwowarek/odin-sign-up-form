@@ -3,6 +3,7 @@ const Booking = require("../../model/sequelize/Booking");
 const User = require("../../model/sequelize/User");
 
 const authorization = require("../../utils/authorization");
+const generateNewSessionId = require("../../utils/sessionIdGenerator");
 
 exports.getUsers = () => {
     return User.findAll();
@@ -29,7 +30,8 @@ exports.createUser = (data) => {
         lastName: data.lastName,
         email: data.email,
         phoneNumber: data.phoneNumber,
-        password: authorization.hashPassword(data.password)
+        password: authorization.hashPassword(data.password),
+        idSession: generateNewSessionId()
         }
     );
 };

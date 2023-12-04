@@ -1,6 +1,7 @@
 const UserRepository = require("../repository/sequelize/UserRepository");
 const DeskRepository = require("../repository/sequelize/DeskRepository");
 const BookingRepository = require("../repository/sequelize/BookingRepository");
+
 const authorization = require("../utils/authorization");
 const generateNewSessionId = require("../utils/sessionIdGenerator");
 
