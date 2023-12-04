@@ -7,6 +7,7 @@ btnCreateAccount.disabled = true;
 function checkAllInputs() {
   if (Array.from(inputs).every((input) => input.classList.contains("valid"))) {
     btnCreateAccount.disabled = false;
+    btnCreateAccount.style.backgroundColor = "rgba(79, 131, 187, 0.808)";
   } else {
     btnCreateAccount.disabled = true;
   }

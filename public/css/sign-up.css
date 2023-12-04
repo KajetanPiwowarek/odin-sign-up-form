@@ -146,7 +146,7 @@ input:-webkit-autofill {
 
 .btnCreateAccount {
     border: 0;
-    background-color: var(--light-darky);
+    background-color: var(--light-grey);
     color: white;
     padding: 10px 50px;
     letter-spacing: .05em;
