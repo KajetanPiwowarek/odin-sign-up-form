@@ -7,7 +7,7 @@ CREATE TABLE Users (
     FirstName varchar(255) NOT NULL,
     LastName varchar(100) NOT NULL,
     Email varchar(100) NOT NULL,
-    PhoneNumber varchar(100) NULL,
+    PhoneNumber varchar(100) NOT NULL,
     Password varchar(100) NOT NULL,
     SessionId varchar(100) NULL,
     CONSTRAINT User_pk PRIMARY KEY (ID)
