@@ -5,6 +5,10 @@ const Booking = require("../../model/sequelize/Booking");
 const User = require("../../model/sequelize/User");
 
 exports.getBookings = () => {
+  return Booking.findAll();
+};
+
+exports.getBookingsAll = () => {
   return Booking.findAll({include: [
     {
       model: User,

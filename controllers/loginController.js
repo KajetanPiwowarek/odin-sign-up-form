@@ -25,7 +25,7 @@ exports.login = (req, res, next) => {
             }
             res.render("login", {
               navLocation: "login",
-              info: "User is already logged in. (Clearing data)",
+              info: "User is already logged in. (Logging out)",
             });
           });
         } else {
@@ -48,7 +48,7 @@ exports.login = (req, res, next) => {
       } else {
         res.render("login", {
           navLocation: "login",
-          info: "Wrong",
+          info: "Wrong password",
         });
       }
     })

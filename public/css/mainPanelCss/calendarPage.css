@@ -100,10 +100,44 @@ span.disactive {
 
 .tableContainer {
   display: flex;
+  flex-direction: column;
+  gap: 15px;
   margin: 20px;
   padding: 20px;
   background-color: var(--light-darky);
   border-radius: 10px;
+}
+
+.filterContainer {
+  display: flex;
+  padding-left: 30px;
+  gap: 10px;
+}
+
+label {
+  letter-spacing: .05em;
+  font-size: 28px;
+  color: var(--opac-white);
+  transition: all .4s;
+}
+
+select {
+  min-width: 180px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 15px;
+  border: 0;
+  border: 1px solid rgb(0,0,0,.4);
+  padding: 6px 6px 6px 10px;
+  transition: all .5s ease-in;
+  background-color: var(--light-darky);
+  color: var(--opac-white);
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+select:focus {
+  border: 1px solid  var(--light-grey);
+  outline: none;
 }
 
 table {
@@ -114,7 +148,7 @@ th, td {
   text-align: center;
   border: 3px solid var(--darky);
   padding: 10px;
-  min-width: 120px;
+  min-width: 180px;
   width: fit-content;
 }
 
