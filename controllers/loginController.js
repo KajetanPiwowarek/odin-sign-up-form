@@ -1,4 +1,6 @@
 const UserRepository = require("../repository/sequelize/UserRepository");
+const DeskRepository = require("../repository/sequelize/DeskRepository");
+const BookingRepository = require("../repository/sequelize/BookingRepository");
 const authorization = require("../utils/authorization");
 const generateNewSessionId = require("../utils/sessionIdGenerator");
 
@@ -38,8 +40,18 @@ exports.login = (req, res, next) => {
           req.session.idSession = newSessionId;
 
           if (user.idUser === 1) {
-            res.render("mainPanel/mainPage", {
-              navLocation: "admin",
+            let allDesks, allBookings;
+            DeskRepository.getDesks().then((desks) => {
+              allDesks = desks;
+              return BookingRepository.getBookings().then((bookings) => {
+                allBookings = bookings;
+                res.render("mainPanel/mainPage", {
+                  allDesks: allDesks,
+                  allBookings: allBookings,
+                  user: user,
+                  navLocation: "admin",
+                });
+              });
             });
           } else {
             res.redirect("/home");

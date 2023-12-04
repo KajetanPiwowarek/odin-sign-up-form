@@ -50,3 +50,12 @@ exports.deleteBooking = (idBooking) => {
     where: {idBooking: idBooking}
   });
 };
+
+exports.getBookingByIdUser = (idUser) => {
+  if (Booking.findByPk(idUser) == null){
+    return false;
+  } else {
+    return true;
+  }
+  
+};
