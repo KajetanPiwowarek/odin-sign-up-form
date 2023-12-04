@@ -27,7 +27,7 @@ exports.home = (req, res, next) => {
           allDesks: allDesks,
           allBookings: allBookings,
           user: user,
-          navLocation: "admin",
+          navLocation: "main",
         });
       });
     });
