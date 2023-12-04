@@ -15,23 +15,11 @@ exports.signup = (req, res, next) => {
         });
       } else {
         UserRepository.createUser(user)
-          .then(result => {
-            req.session.loggedUser = user;
-            req.session.idSession = user.idSession;
+          .then(createdUser => {
+            req.session.loggedUser = createdUser;
+            req.session.idSession = createdUser.idSession;
 
-            let allDesks, allBookings;
-            DeskRepository.getDesks().then((desks) => {
-              allDesks = desks;
-              return BookingRepository.getBookings().then((bookings) => {
-                allBookings = bookings;
-                res.render("mainPanel/mainPage", {
-                  allDesks: allDesks,
-                  allBookings: allBookings,
-                  user: user,
-                  navLocation: "main",
-                });
-              });
-            });
+            res.redirect("/home");
           })
           .catch(err => {
             console.log(err.errors);
