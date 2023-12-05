@@ -102,16 +102,67 @@ span.disactive {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin: 20px;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   background-color: var(--light-darky);
   border-radius: 10px;
 }
 
-.filterContainer {
+.textContainer {
   display: flex;
   padding-left: 30px;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 100;
+  color: var(--darky);
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.filters {
+  display: flex;
   gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btnNextWeek,
+.btnPrevWeek,
+.btnToday {
+  min-width: 120px;
+  border: 0;
+  background-color: var(--light-darky);
+  color: white;
+  padding: 10px;
+  letter-spacing: .05em;
+  border-radius: 5px;
+  font-size: 12px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+  transition: all .15s ease-in-out;
+}
+
+.btnNextWeek:hover,
+.btnPrevWeek:hover,
+.btnToday:hover {
+  background: var(--lighter-darky);
+  transform: translateY(-0.2rem);
+}
+
+.btnToday {
+  min-width: 40px;
 }
 
 label {
@@ -121,8 +172,12 @@ label {
   transition: all .4s;
 }
 
+.filterSpecific {
+  padding-left: 30px;
+}
+
 select {
-  min-width: 180px;
+  min-width: 150px;
   text-align: center;
   border-radius: 4px;
   font-size: 15px;
@@ -133,6 +188,10 @@ select {
   background-color: var(--light-darky);
   color: var(--opac-white);
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.selectSpecific {
+  min-width: 350px;
 }
 
 select:focus {

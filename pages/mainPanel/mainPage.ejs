@@ -66,14 +66,18 @@
               <h3 class="subtitle">Bookings</h3>
             </span>
             <div class="myBookings">
+              <% allBookings.sort((a, b) => new Date(a.bookingDate) - new Date(b.bookingDate)); %>
               <% for (let i=0; i<allBookings.length; i++) { %>
                 <% let booking = allBookings[i]; %>
                 <% if (booking.idUser == user.idUser) { %>
                   <% let desk = allDesks.find((desk) => desk.idDesk == booking.idDesk); %>
-                  <div class="myBookingsInfo">
-                    <span class="date"><%= new Date(booking.bookingDate).toISOString().split("T")[0] + ' ->'%></span>
-                    <span class="info"><%= 'Desk: ' + desk.deskName + ' ' + desk.deskNumber + ' | Type: ' + desk.type + ' | Floor: ' + desk.floor + ' | Time: ' + new Date(booking.bookingTime).toISOString().split("T")[1].substring(0, 5) %></span>
-                  </div>
+                  <% const bookingDate = new Date(booking.bookingDate); %>
+                  <% if (bookingDate > new Date()) { %>
+                    <div class="myBookingsInfo">
+                      <span class="date"><%= bookingDate.toISOString().split("T")[0] + ' ->'%></span>
+                      <span class="info"><%= 'Desk: ' + desk.deskName + ' ' + desk.deskNumber + ' | Type: ' + desk.type + ' | Floor: ' + desk.floor + ' | Time: ' + new Date(booking.bookingTime).toISOString().split("T")[1].substring(0, 5) %></span>
+                    </div>
+                  <% } %>
                 <% } %>
               <% } %>
             </div>

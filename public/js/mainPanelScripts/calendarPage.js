@@ -1,57 +1,154 @@
-loadData();
-clearCalendar();
+let now = new Date();
+
+const btnNextWeek = document.querySelector(".btnNextWeek");
+const btnPrevWeek = document.querySelector(".btnPrevWeek");
+const btnToday = document.querySelector(".btnToday");
 
 const allDesks = window.allDesks;
 const allUsers = window.allUsers;
 const allBookings = window.allBookings;
 
+const filterContainer = document.querySelector(".filterContainer");
 const filterSelect = document.getElementById("filter");
-filterSelect.addEventListener("change", applyFilter);
+let selectedFilter = filterSelect.value;
+const filterSpecificSelect = document.getElementById("filterSpecific");
+let selectedFilterSpecific = filterSpecificSelect.value;
+
+
+loadData("now");
+
+
+btnNextWeek.addEventListener("click", function() {
+  console.log("next");
+  const status = "next";
+  loadData(status);
+});
+
+btnToday.addEventListener("click", function() {
+  const status = "now";
+  loadData(status);
+});
+
+btnPrevWeek.addEventListener("click", function() {
+  const status = "prev";
+  loadData(status);
+});
+
+filterSelect.addEventListener("change", addFilter);
+filterSpecificSelect.addEventListener("change", applyFilter);
+
+function addFilter() {
+  selectedFilter = filterSelect.value;
+
+  filterSpecificSelect.innerHTML =
+    '<option value="default" selected>-- filter --</option>';
+
+  if (selectedFilter === "users") {
+    for (let i = 1; i < allUsers.length; i++) {
+      let user = allUsers[i];
+      const option = document.createElement("option");
+      option.value = user.idUser;
+      option.label = `${user.firstName} ${user.lastName}`;
+      filterSpecificSelect.appendChild(option);
+    }
+  } else if (selectedFilter === "desks") {
+    for (let i = 0; i < allDesks.length; i++) {
+      let desk = allDesks[i];
+      const option = document.createElement("option");
+      option.value = desk.idDesk;
+      option.label = `${desk.deskName} ${desk.deskNumber}`;
+      filterSpecificSelect.appendChild(option);
+    }
+  } else if (selectedFilter === "-- filter --") {
+    clearCalendar();
+  }
+}
 
 function applyFilter() {
-  const selectedFilter = filterSelect.value;
-
-  updateCalendar(selectedFilter);
+  selectedFilter = filterSelect.value;
+  selectedFilterSpecific = filterSpecificSelect.value;
+  updateCalendar(selectedFilter, selectedFilterSpecific);
 }
 
-function updateCalendar(selectedFilter) {
-  clearCalendar();
+function updateCalendar(selectedFilter, selectedFilterSpecific) {
+  clearCells();
 
-  allBookings.forEach((entry) => {
-    const { bookingDate, bookingTime, idUser, idDesk } = entry;
-    const hour = new Date(bookingTime).getUTCHours();
-    const date = new Date(bookingDate);
-    const today = new Date();
+  if (selectedFilter === "users") {
+    const user = allUsers.find((user) => user.idUser == selectedFilterSpecific);
+    if (user) {
+      const userBookings = allBookings.filter((booking) => booking.idUser == user.idUser);
 
-    if (
-      date.getFullYear() === today.getFullYear() &&
-      date.getMonth() === today.getMonth()
-    ) {
-      const differenceInDays = date.getUTCDate() - today.getUTCDate();
-      if (0 < differenceInDays < 7) {
-        const cell = document.querySelector(
-          `.h${hour} .info${differenceInDays + 1}`
-        );
-        console.log(cell);
+      userBookings.forEach((entry) => {
+        const { bookingDate, bookingTime, idDesk } = entry;
+        const hour = new Date(bookingTime).getUTCHours();
+        const date = new Date(bookingDate);
 
-        if (selectedFilter === "users") {
-          console.log(allUsers);
-          const user = allUsers.find((user) => user.idUser == idUser);
-          const userInfo = `${user.firstName} ${user.lastName}`;
-          cell.textContent = userInfo;
-        } else if (selectedFilter === "desks") {
-          const desk = allDesks.find((desk) => desk.idDesk == idDesk);
-          const deskInfo = `${desk.deskName} ${desk.deskNumber}`;
-          cell.textContent = deskInfo;
-        } else if (selectedFilter === "-- filter --") {
-          clearCalendar();
+        if (
+          date.getFullYear() === now.getFullYear() &&
+          date.getMonth() === now.getMonth()
+        ) {
+          const differenceInDays = date.getUTCDate() - now.getUTCDate();
+          if (0 < differenceInDays && differenceInDays < 7) {
+            const cellUser = document.querySelector(
+              `.h${hour} .infoU${differenceInDays + 1}`
+            );
+            const cellDesk = document.querySelector(
+              `.h${hour} .infoD${differenceInDays + 1}`
+            );
+
+            const desk = allDesks.find((desk) => desk.idDesk == idDesk);
+            const userInfo = `${user.firstName} ${user.lastName}`;
+            cellUser.style.color = "rgba(79, 131, 187, 0.808)";
+            cellUser.textContent = userInfo;
+            
+            const deskInfo = `${desk.deskName} ${desk.deskNumber}`;
+            cellDesk.textContent = deskInfo;
+          }
         }
-      }
+      });
+    } else {
+      console.log("User doesn't exist");
     }
-  });
+  } else if (selectedFilter === "desks") {
+    const desk = allDesks.find((desk) => desk.idDesk == selectedFilterSpecific);
+    if (desk) {
+      const deskBookings = allBookings.filter((booking) => booking.idDesk == desk.idDesk);
+
+      deskBookings.forEach((entry) => {
+        const { bookingDate, bookingTime, idUser } = entry;
+        const hour = new Date(bookingTime).getUTCHours();
+        const date = new Date(bookingDate);
+
+        if (
+          date.getFullYear() === now.getFullYear() &&
+          date.getMonth() === now.getMonth()
+        ) {
+          const differenceInDays = date.getUTCDate() - now.getUTCDate();
+          if (0 < differenceInDays && differenceInDays < 7) {
+            const cellUser = document.querySelector(
+              `.h${hour} .infoU${differenceInDays + 1}`
+            );
+            const cellDesk = document.querySelector(
+              `.h${hour} .infoD${differenceInDays + 1}`
+            );
+
+            const user = allUsers.find((user) => user.idUser == idUser);
+            const userInfo = `${desk.deskName} ${desk.deskNumber}`;
+            cellUser.style.color = "rgba(79, 131, 187, 0.808)";
+            cellUser.textContent = userInfo;
+            
+            const deskInfo = `${user.firstName} ${user.lastName}`;
+            cellDesk.textContent = deskInfo;
+          }
+        }
+      });
+    } else {
+      console.log("Desk doesn't exist");
+    }
+  }
 }
 
-function clearCalendar() {
+function clearCells() {
   const cells = document.querySelectorAll("td p");
   cells.forEach((cell) => {
     cell.textContent = "";
@@ -70,7 +167,15 @@ function closePanel() {
   document.querySelector(".links").style.visibility = "hidden";
 }
 
-function loadData() {
+function loadData(status) {
+  if (status == "now") {
+    now = new Date();
+  } else if(status == "next"){
+    now.setDate(now.getDate() + 7);
+  } else if (status == "prev") {
+    now.setDate(now.getDate() - 7);
+  }
+
   let today = document.querySelector(".today");
   let secondDay = document.querySelector(".secondDay");
   let thirdDay = document.querySelector(".thirdDay");
@@ -78,8 +183,6 @@ function loadData() {
   let fifthDay = document.querySelector(".fifthDay");
   let sixthDay = document.querySelector(".sixthDay");
   let seventhDay = document.querySelector(".seventhDay");
-
-  let now = new Date();
 
   if (
     now.getMonth() + 1 == 1 ||
@@ -318,4 +421,6 @@ function loadData() {
       seventhDay.innerHTML = `6 . ${now.getMonth() + 2} . ${now.getFullYear()}`;
     }
   }
+
+  applyFilter();
 }

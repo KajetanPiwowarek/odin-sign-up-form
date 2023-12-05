@@ -11,9 +11,27 @@
       type="image/x-icon"
     />
     <link rel="stylesheet" href="/css/mainPanelCss/calendarPage.css" />
-    <script> window.allDesks = JSON.parse(decodeURIComponent("<%= encodeURIComponent(JSON.stringify(allDesks)) %>")); </script>
-    <script> window.allUsers = JSON.parse(decodeURIComponent("<%= encodeURIComponent(JSON.stringify(allUsers)) %>")); </script>
-    <script> window.allBookings = JSON.parse(decodeURIComponent("<%= encodeURIComponent(JSON.stringify(allBookings)) %>")); </script>
+    <script>
+      window.allDesks = JSON.parse(
+        decodeURIComponent(
+          "<%= encodeURIComponent(JSON.stringify(allDesks)) %>"
+        )
+      );
+    </script>
+    <script>
+      window.allUsers = JSON.parse(
+        decodeURIComponent(
+          "<%= encodeURIComponent(JSON.stringify(allUsers)) %>"
+        )
+      );
+    </script>
+    <script>
+      window.allBookings = JSON.parse(
+        decodeURIComponent(
+          "<%= encodeURIComponent(JSON.stringify(allBookings)) %>"
+        )
+      );
+    </script>
     <script src="/js/mainPanelScripts/calendarPage.js" defer></script>
   </head>
   <body>
@@ -21,13 +39,30 @@
       <%- include('navigationPanel.ejs') %>
       <section class="main">
         <div class="tableContainer">
+          <div class="textContainer">
+            <p class="text">
+              Please select filter group and than a specific filter option for
+              data to be shown on the calendar.
+            </p>
+          </div>
           <div class="filterContainer">
-            <label for="filter">Filter:</label>
-            <select id="filter">
-              <option value="users" selected>-- filter --</option>
-              <option value="users">Users</option>
-              <option value="desks">Desks</option>
-            </select>
+            <div class="filters">
+              <label for="filter">Group:</label>
+              <select id="filter">
+                <option value="default" selected>-- filter --</option>
+                <option value="users">Users</option>
+                <option value="desks">Desks</option>
+              </select>
+              <label class="filterSpecific" for="filterSpecific">Data:</label>
+              <select class="selectSpecific" id="filterSpecific">
+                <option value="default" selected>-- filter --</option>
+              </select>
+            </div>
+            <div class="buttons">
+              <button class="btnPrevWeek">Previous Week</button>
+              <button class="btnToday">Today</button>
+              <button class="btnNextWeek">Next Week</button>
+            </div>
           </div>
           <table>
             <thead>
@@ -46,241 +81,311 @@
               <tr class="h8">
                 <td class="hour8">8:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h9">
                 <td class="hour9">9:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h10">
                 <td class="hour10">10:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h11">
                 <td class="hour11">11:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h12">
                 <td class="hour12">12:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h13">
                 <td class="hour13">13:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h14">
                 <td class="hour14">14:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h15">
                 <td class="hour15">15:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h16">
                 <td class="hour16">16:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
               <tr class="h17">
                 <td class="hour17">17:00</td>
                 <td>
-                  <p class="info1"></p>
+                  <p class="infoU1"></p>
+                  <p class="infoD1"></p>
                 </td>
                 <td>
-                  <p class="info2"></p>
+                  <p class="infoU2"></p>
+                  <p class="infoD2"></p>
                 </td>
                 <td>
-                  <p class="info3"></p>
+                  <p class="infoU3"></p>
+                  <p class="infoD3"></p>
                 </td>
                 <td>
-                  <p class="info4"></p>
+                  <p class="infoU4"></p>
+                  <p class="infoD4"></p>
                 </td>
                 <td>
-                  <p class="info5"></p>
+                  <p class="infoU5"></p>
+                  <p class="infoD5"></p>
                 </td>
                 <td>
-                  <p class="info6"></p>
+                  <p class="infoU6"></p>
+                  <p class="infoD6"></p>
                 </td>
                 <td>
-                  <p class="info7"></p>
+                  <p class="infoU7"></p>
+                  <p class="infoD7"></p>
                 </td>
               </tr>
             </tbody>
