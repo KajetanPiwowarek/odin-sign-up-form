@@ -1,26 +1,99 @@
 const allDesks = window.allDesks;
+const allBookings = window.allBookings;
 
+const bookingDate = document.getElementById("bookingDate");
+const bookingTimeDropdown = document.getElementById("bookingTime");
 const floorDropdown = document.getElementById("floor");
 const deskDropdown = document.getElementById("desk");
 
+bookingTimeDropdown.addEventListener("change", updateFloorOptions);
 floorDropdown.addEventListener("change", updateDeskOptions);
+
+function updateFloorOptions() {
+  const selectedTime = bookingTimeDropdown.value;
+  const selectedDate = bookingDate.value;
+
+  const possibleFloors = [...new Set(allDesks.map(desk => desk.floor))];
+
+  const desksPerFloor = {};
+  allDesks.forEach(desk => {
+    if (!desksPerFloor[desk.floor]) {
+      desksPerFloor[desk.floor] = 0;
+    }
+    desksPerFloor[desk.floor]++;
+  });
+
+  const bookedDesksPerFloor = {};
+  allBookings
+    .filter(booking => {
+      const bookingDate = new Date(booking.bookingDate)
+          .toISOString()
+          .split("T")[0];
+        const bookingTime = new Date(booking.bookingTime)
+          .toISOString()
+          .split("T")[1]
+          .substring(0, 5);
+      return (
+        bookingDate === selectedDate &&
+        bookingTime === selectedTime
+      );
+    })
+    .forEach(booking => {
+      const desk = allDesks.find(d => d.idDesk === booking.idDesk);
+      if (!bookedDesksPerFloor[desk.floor]) {
+        bookedDesksPerFloor[desk.floor] = 0;
+      }
+      bookedDesksPerFloor[desk.floor]++;
+    });
+
+  const availableFloors = possibleFloors.filter(floor => {
+    const availableDesks = desksPerFloor[floor] - (bookedDesksPerFloor[floor] || 0);
+    return availableDesks > 0;
+  }).sort((a, b) => a - b);
+
+  floorDropdown.innerHTML =
+    '<option value="default" selected>-- floor --</option>' +
+    availableFloors.map(floor => `<option value="${floor}">${floor}</option>`).join('');
+}
+
 
 function updateDeskOptions() {
   const selectedFloor = floorDropdown.value;
+  const selectedTime = bookingTimeDropdown.value;
+  const selectedDate = bookingDate.value;
 
   deskDropdown.innerHTML =
     '<option value="default" selected>-- desk --</option>';
 
-  for (let i = 0; i < allDesks.length; i++) {
-    let desk = allDesks[i];
-    if (desk.floor === selectedFloor) {
-      const option = document.createElement("option");
-      option.value = desk.idDesk;
-      option.label = `${desk.deskName} ${desk.deskNumber} | ${desk.type}`;
-      deskDropdown.appendChild(option);
-    }
-  }
+  const bookedDesksOnSelectedFloor = allBookings
+    .filter(booking => {
+      const bookingDate = new Date(booking.bookingDate)
+          .toISOString()
+          .split("T")[0];
+        const bookingTime = new Date(booking.bookingTime)
+          .toISOString()
+          .split("T")[1]
+          .substring(0, 5);
+      return (
+        bookingDate === selectedDate &&
+        bookingTime === selectedTime &&
+        allDesks.find(desk => desk.idDesk === booking.idDesk && desk.floor === selectedFloor)
+      );
+    })
+    .map(booking => booking.idDesk);
+
+  const availableDesksOnSelectedFloor = allDesks
+    .filter(desk => desk.floor === selectedFloor && !bookedDesksOnSelectedFloor.includes(desk.idDesk))
+    .sort((a, b) => a.deskName.localeCompare(b.deskName));
+
+  availableDesksOnSelectedFloor.forEach(desk => {
+    const option = document.createElement("option");
+    option.value = desk.idDesk;
+    option.label = `${desk.deskName} ${desk.deskNumber} | ${desk.type}`;
+    deskDropdown.appendChild(option);
+  });
 }
+
 
 var inputs = document.querySelectorAll("input");
 var selects = document.querySelectorAll("select");

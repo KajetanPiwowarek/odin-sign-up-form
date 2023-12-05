@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="/css/mainPanelCss/bookingPage.css" />
     <script> window.allDesks = JSON.parse(decodeURIComponent("<%= encodeURIComponent(JSON.stringify(allDesks)) %>")); </script>
+    <script> window.allBookings = JSON.parse(decodeURIComponent("<%= encodeURIComponent(JSON.stringify(allBookings)) %>"));</script>
     <script src="/js/mainPanelScripts/bookingPage.js" defer></script>
   </head>
   <body>
@@ -36,8 +37,8 @@
                 <label for="bookingTime">Time:</label>
                 <select id="bookingTime" name="bookingTime">
                   <option value="default" selected>-- time --</option>
-                  <option value="8:00">8:00</option>
-                  <option value="9:00">9:00</option>
+                  <option value="08:00">8:00</option>
+                  <option value="09:00">9:00</option>
                   <option value="10:00">10:00</option>
                   <option value="11:00">11:00</option>
                   <option value="12:00">12:00</option>
@@ -53,10 +54,6 @@
               <label for="floor">Desk at Floor:</label>
               <select id="floor">
                 <option value="default" selected>-- floor --</option>
-                <% const uniqueFloors = [...new Set(allDesks.map(desk => desk.floor))].sort((a, b) => a - b); %>
-                  <% for (let i=0; i<uniqueFloors.length; i++) { %>
-                    <option value="<%= uniqueFloors[i] %>" label="<%= uniqueFloors[i] %>"></option>
-                <% } %>
               </select>
             </div>
             <div id="errorFloor" class="error"></div>

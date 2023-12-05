@@ -6,23 +6,31 @@ exports.showBooking = (req, res, next) => {
     let allDesks;
     DeskRepository.getDesks().then((desks) => {
       allDesks = desks;
-      res.render("mainPanel/bookingPage", {
-        info: "",
-        allDesks: allDesks,
-        navLocation: "admin",
-        status: "",
-      });
+      return BookingRepository.getBookings().then((bookings) => {
+        allBookings = bookings;
+        res.render("mainPanel/bookingPage", {
+          info: "",
+          allDesks: allDesks,
+          allBookings: allBookings,
+          navLocation: "admin",
+          status: "",
+        });
+      })
     });
   } else {
     let allDesks;
     DeskRepository.getDesks().then((desks) => {
       allDesks = desks;
-      res.render("mainPanel/bookingPage", {
-        info: "",
-        allDesks: allDesks,
-        navLocation: "booking",
-        status: "",
-      });
+      return BookingRepository.getBookings().then((bookings) => {
+        allBookings = bookings;
+        res.render("mainPanel/bookingPage", {
+          info: "",
+          allDesks: allDesks,
+          allBookings: allBookings,
+          navLocation: "admin",
+          status: "",
+        });
+      })
     });
   }
 };
