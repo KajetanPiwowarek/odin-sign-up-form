@@ -49,18 +49,7 @@ exports.bookDesk = (req, res, next) => {
         );
       });
 
-      if (isDeskAlreadyBooked) {
-        let allDesks;
-        DeskRepository.getDesks().then((desks) => {
-          allDesks = desks;
-          res.render("mainPanel/bookingPage", {
-            info: "Desk is already booked",
-            allDesks: allDesks,
-            navLocation: "booking",
-            status: "negative",
-          });
-        });
-      } else {
+      if (!isDeskAlreadyBooked) {
         BookingRepository.createBooking(booking, user)
           .then((result) => {
             let allDesks;
@@ -87,6 +76,17 @@ exports.bookDesk = (req, res, next) => {
               });
             });
           });
+      } else {
+        let allDesks;
+        DeskRepository.getDesks().then((desks) => {
+          allDesks = desks;
+          res.render("mainPanel/bookingPage", {
+            info: "Desk is already booked",
+            allDesks: allDesks,
+            navLocation: "booking",
+            status: "negative",
+          });
+        });
       }
     })
     .catch((err) => {

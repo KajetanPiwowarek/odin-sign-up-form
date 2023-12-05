@@ -22,15 +22,43 @@ exports.login = (req, res, next) => {
           user.idSession = null;
           user.save();
 
-          req.session.destroy((err) => {
-            if (err) {
-              console.error("Error destroying session:", err);
-            }
-            res.render("login", {
-              navLocation: "login",
-              info: "User is already logged in. (Logging out)",
+          const newSessionId = generateNewSessionId();
+
+          user.idSession = newSessionId;
+          user.save();
+
+          req.session.loggedUser = user;
+          req.session.idSession = newSessionId;
+
+          if (user.idUser === 1) {
+            let allDesks, allBookings;
+            DeskRepository.getDesks().then((desks) => {
+              allDesks = desks;
+              return BookingRepository.getBookings().then((bookings) => {
+                allBookings = bookings;
+                res.render("mainPanel/mainPage", {
+                  allDesks: allDesks,
+                  allBookings: allBookings,
+                  user: user,
+                  navLocation: "admin",
+                });
+              });
             });
-          });
+          } else {
+            res.redirect("/home");
+          }
+
+          // terminating session logic
+
+          // req.session.destroy((err) => {
+          //   if (err) {
+          //     console.error("Error destroying session:", err);
+          //   }
+          //   res.render("login", {
+          //     navLocation: "login",
+          //     info: "User is already logged in. (Logging out)",
+          //   });
+          // });
         } else {
           const newSessionId = generateNewSessionId();
 
