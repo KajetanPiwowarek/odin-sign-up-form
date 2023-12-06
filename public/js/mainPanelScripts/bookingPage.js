@@ -16,7 +16,7 @@ function updateTimeOptions() {
 
   const bookingsForSelectedDate = allBookings.filter(booking => {
     const bookingDate = new Date(booking.bookingDate).toISOString().split("T")[0];
-    return bookingDate === selectedDate;
+    return bookingDate === selectedDate && booking.idUser === user.idUser;
   });
 
   const allTimes = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
