@@ -33,3 +33,11 @@ exports.home = (req, res, next) => {
     });
   }
 };
+
+exports.cancelBooking = (req, res, next) => {
+  const idBooking = req.params.idBooking;
+  BookingRepository.deleteBooking(idBooking)
+    .then( result => {
+      res.redirect('/home');
+    });
+}

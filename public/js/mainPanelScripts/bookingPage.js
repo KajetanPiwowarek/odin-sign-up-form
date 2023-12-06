@@ -1,3 +1,4 @@
+const user = window.user;
 const allDesks = window.allDesks;
 const allBookings = window.allBookings;
 
@@ -6,8 +7,31 @@ const bookingTimeDropdown = document.getElementById("bookingTime");
 const floorDropdown = document.getElementById("floor");
 const deskDropdown = document.getElementById("desk");
 
+bookingDate.addEventListener("change", updateTimeOptions);
 bookingTimeDropdown.addEventListener("change", updateFloorOptions);
 floorDropdown.addEventListener("change", updateDeskOptions);
+
+function updateTimeOptions() {
+  const selectedDate = bookingDate.value;
+
+  const bookingsForSelectedDate = allBookings.filter(booking => {
+    const bookingDate = new Date(booking.bookingDate).toISOString().split("T")[0];
+    return bookingDate === selectedDate;
+  });
+
+  const allTimes = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
+
+  const availableTimes = allTimes.filter(time => {
+    return !bookingsForSelectedDate.some(booking => {
+      const bookingTime = booking.bookingTime.substring(0, 5);
+      return bookingTime === time;
+    });
+  }).sort((a, b) => a - b);
+
+  bookingTimeDropdown.innerHTML =
+    '<option value="default" selected>-- time --</option>' +
+    availableTimes.map(time => `<option value="${time}">${time}</option>`).join('');
+}
 
 function updateFloorOptions() {
   const selectedTime = bookingTimeDropdown.value;
@@ -29,10 +53,7 @@ function updateFloorOptions() {
       const bookingDate = new Date(booking.bookingDate)
           .toISOString()
           .split("T")[0];
-        const bookingTime = new Date(booking.bookingTime)
-          .toISOString()
-          .split("T")[1]
-          .substring(0, 5);
+        const bookingTime = booking.bookingTime.substring(0, 5);
       return (
         bookingDate === selectedDate &&
         bookingTime === selectedTime
@@ -70,10 +91,7 @@ function updateDeskOptions() {
       const bookingDate = new Date(booking.bookingDate)
           .toISOString()
           .split("T")[0];
-        const bookingTime = new Date(booking.bookingTime)
-          .toISOString()
-          .split("T")[1]
-          .substring(0, 5);
+        const bookingTime = booking.bookingTime.substring(0, 5);
       return (
         bookingDate === selectedDate &&
         bookingTime === selectedTime &&

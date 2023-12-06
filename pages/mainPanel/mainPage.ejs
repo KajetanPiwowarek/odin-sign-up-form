@@ -74,8 +74,11 @@
                   <% const bookingDate = new Date(booking.bookingDate); %>
                   <% if (bookingDate => new Date()) { %>
                     <div class="myBookingsInfo">
-                      <span class="date"><%= bookingDate.toISOString().split("T")[0] + ' ->'%></span>
-                      <span class="info"><%= 'Desk: ' + desk.deskName + ' ' + desk.deskNumber + ' | Type: ' + desk.type + ' | Floor: ' + desk.floor + ' | Time: ' + new Date(booking.bookingTime).toISOString().split("T")[1].substring(0, 5) %></span>
+                      <div class="myBookingsText">
+                        <span class="date"><%= bookingDate.toISOString().split("T")[0] + ' ->'%></span>
+                        <span class="info"><%= 'Desk: ' + desk.deskName + ' ' + desk.deskNumber + ' | Type: ' + desk.type + ' | Floor: ' + desk.floor + ' | Time: ' + booking.bookingTime.substring(0, 5); %></span>
+                      </div>
+                      <span><a href="/home/cancel/<%= booking.idBooking %>" class="btnCancel">Cancel</a></span>
                     </div>
                   <% } %>
                 <% } %>

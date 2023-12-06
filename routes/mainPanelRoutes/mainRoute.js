@@ -4,5 +4,6 @@ const mainController = require("../../controllers/mainPageControllers/mainContro
 
 /* GET login page. */
 router.get("/", mainController.home);
+router.get("/cancel/:idBooking", mainController.cancelBooking);
 
 module.exports = router;

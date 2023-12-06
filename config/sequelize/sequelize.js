@@ -1,17 +1,10 @@
 const Sequelize = require("sequelize");
 
 const sequelize = new Sequelize(
-  'project-inz-db',
-  'admin123',
-  'DQ75}*.*5f!ib2!DQ75}*.*5f!ib2!',
+  'project-inz', 'root', 'root',
   {
-    host: 'project-inz-server.database.windows.net',
-    dialect: "mssql",
-    dialectOptions: {
-      options: {
-        encrypt: true,
-      },
-    },
+    host: 'localhost',
+    dialect: "mysql",
   }
 );
 

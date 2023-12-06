@@ -4,6 +4,8 @@
     --green: rgb(33, 250, 131);
     --red: rgb(252, 86, 108);
     --dusky-green: rgb(6, 170, 94);
+    --dusky-red: rgb(179, 14, 36);
+    --duskier-red: rgb(206, 30, 53);
     --opac-white: rgba(255, 255, 255, .8);
     --form-txt:  rgba(255, 255, 255, .5);
     --darky: #1d2b3a;
@@ -168,18 +170,43 @@ h3 {
 
 .myBookingsInfo {
   display: flex;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
 }
 
-.myBookingsInfo .date {
+.myBookingsText {
+  display: flex;
+  gap: 8px;
+}
+
+.myBookingsText .date {
   font-size: 18px;
   font-weight: bold;
   color: black;
 }
 
-.myBookingsInfo .info {
+.myBookingsText .info {
   font-size: 16px;
   font-weight: 100;
   color: white;
+}
+
+.myBookingsInfo .btnCancel {
+  border: 0;
+  background-color: var(--dusky-red);
+  color: white;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .15s ease-in-out;
+}
+
+.myBookingsInfo .btnCancel:hover {
+  background: var(--duskier-red);
+  transform: translateY(-0.05rem);
 }

@@ -28,7 +28,6 @@ module.exports = () => {
     foreignKey: { name: "idDesk", allowNull: false },
   });
 
-  let allUsers, allDesks;
   return sequelize
     .sync()  // { force: true } <- droping all 'reset'
     .then(() => {

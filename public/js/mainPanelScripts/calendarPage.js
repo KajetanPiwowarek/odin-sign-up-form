@@ -19,7 +19,6 @@ loadData("now");
 
 
 btnNextWeek.addEventListener("click", function() {
-  console.log("next");
   const status = "next";
   loadData(status);
 });
@@ -80,7 +79,7 @@ function updateCalendar(selectedFilter, selectedFilterSpecific) {
 
       userBookings.forEach((entry) => {
         const { bookingDate, bookingTime, idDesk } = entry;
-        const hour = new Date(bookingTime).getUTCHours();
+        const hour = bookingTime.substring(0, 2);
         const date = new Date(bookingDate);
 
         if (
@@ -116,7 +115,7 @@ function updateCalendar(selectedFilter, selectedFilterSpecific) {
 
       deskBookings.forEach((entry) => {
         const { bookingDate, bookingTime, idUser } = entry;
-        const hour = new Date(bookingTime).getUTCHours();
+        const hour = bookingTime.substring(0, 2);
         const date = new Date(bookingDate);
 
         if (

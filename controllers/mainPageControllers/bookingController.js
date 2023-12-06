@@ -2,7 +2,8 @@ const DeskRepository = require("../../repository/sequelize/DeskRepository");
 const BookingRepository = require("../../repository/sequelize/BookingRepository");
 
 exports.showBooking = (req, res, next) => {
-  if (req.session.loggedUser.idUser === 1) {
+  const user = req.session.loggedUser;
+  if (user.idUser === 1) {
     let allDesks;
     DeskRepository.getDesks().then((desks) => {
       allDesks = desks;
@@ -10,12 +11,13 @@ exports.showBooking = (req, res, next) => {
         allBookings = bookings;
         res.render("mainPanel/bookingPage", {
           info: "",
+          user: user,
           allDesks: allDesks,
           allBookings: allBookings,
           navLocation: "admin",
           status: "",
         });
-      })
+      });
     });
   } else {
     let allDesks;
@@ -25,12 +27,13 @@ exports.showBooking = (req, res, next) => {
         allBookings = bookings;
         res.render("mainPanel/bookingPage", {
           info: "",
+          user: user,
           allDesks: allDesks,
           allBookings: allBookings,
-          navLocation: "admin",
+          navLocation: "booking",
           status: "",
         });
-      })
+      });
     });
   }
 };
@@ -45,13 +48,10 @@ exports.bookDesk = (req, res, next) => {
         const existingBookingDate = new Date(existingBooking.bookingDate)
           .toISOString()
           .split("T")[0];
-        const existingBookingTime = new Date(existingBooking.bookingTime)
-          .toISOString()
-          .split("T")[1]
-          .substring(0, 5);
-
+        const existingBookingTime = existingBooking.bookingTime.substring(0, 5);
         return (
           existingBooking.idDesk == booking.idDesk &&
+          existingBooking.floor == booking.floor &&
           existingBookingDate == booking.bookingDate &&
           existingBookingTime == booking.bookingTime
         );
@@ -60,54 +60,146 @@ exports.bookDesk = (req, res, next) => {
       if (!isDeskAlreadyBooked) {
         BookingRepository.createBooking(booking, user)
           .then((result) => {
-            let allDesks;
-            DeskRepository.getDesks().then((desks) => {
-              allDesks = desks;
-              res.render("mainPanel/bookingPage", {
-                info: "Booked successfully",
-                allDesks: allDesks,
-                navLocation: "booking",
-                status: "positive",
+            if (user.idUser === 1) {
+              let allDesks;
+              DeskRepository.getDesks().then((desks) => {
+                allDesks = desks;
+                return BookingRepository.getBookings().then((bookings) => {
+                  allBookings = bookings;
+                  res.render("mainPanel/bookingPage", {
+                    info: "Booked successfully",
+                    user: user,
+                    allDesks: allDesks,
+                    allBookings: allBookings,
+                    navLocation: "admin",
+                    status: "positive",
+                  });
+                });
               });
-            });
+            } else {
+              let allDesks;
+              DeskRepository.getDesks().then((desks) => {
+                allDesks = desks;
+                return BookingRepository.getBookings().then((bookings) => {
+                  allBookings = bookings;
+                  res.render("mainPanel/bookingPage", {
+                    info: "Booked successfully",
+                    user: user,
+                    allDesks: allDesks,
+                    allBookings: allBookings,
+                    navLocation: "booking",
+                    status: "positive",
+                  });
+                });
+              });
+            }
           })
           .catch((err) => {
             console.log(err.errors);
-            let allDesks;
-            DeskRepository.getDesks().then((desks) => {
-              allDesks = desks;
+            if (user.idUser === 1) {
+              let allDesks;
+              DeskRepository.getDesks().then((desks) => {
+                allDesks = desks;
+                return BookingRepository.getBookings().then((bookings) => {
+                  allBookings = bookings;
+                  res.render("mainPanel/bookingPage", {
+                    info: "Failed to book",
+                    user: user,
+                    allDesks: allDesks,
+                    allBookings: allBookings,
+                    navLocation: "admin",
+                    status: "negative",
+                  });
+                });
+              });
+            } else {
+              let allDesks;
+              DeskRepository.getDesks().then((desks) => {
+                allDesks = desks;
+                return BookingRepository.getBookings().then((bookings) => {
+                  allBookings = bookings;
+                  res.render("mainPanel/bookingPage", {
+                    info: "Failed to book",
+                    user: user,
+                    allDesks: allDesks,
+                    allBookings: allBookings,
+                    navLocation: "booking",
+                    status: "negative",
+                  });
+                });
+              });
+            }
+          });
+      } else {
+        if (user.idUser === 1) {
+          let allDesks;
+          DeskRepository.getDesks().then((desks) => {
+            allDesks = desks;
+            return BookingRepository.getBookings().then((bookings) => {
+              allBookings = bookings;
               res.render("mainPanel/bookingPage", {
-                info: "Failed to book",
+                info: "Desk is already booked",
+                user: user,
                 allDesks: allDesks,
+                allBookings: allBookings,
+                navLocation: "admin",
+                status: "negative",
+              });
+            });
+          });
+        } else {
+          let allDesks;
+          DeskRepository.getDesks().then((desks) => {
+            allDesks = desks;
+            return BookingRepository.getBookings().then((bookings) => {
+              allBookings = bookings;
+              res.render("mainPanel/bookingPage", {
+                info: "Desk is already booked",
+                user: user,
+                allDesks: allDesks,
+                allBookings: allBookings,
                 navLocation: "booking",
                 status: "negative",
               });
             });
           });
-      } else {
-        let allDesks;
-        DeskRepository.getDesks().then((desks) => {
-          allDesks = desks;
-          res.render("mainPanel/bookingPage", {
-            info: "Desk is already booked",
-            allDesks: allDesks,
-            navLocation: "booking",
-            status: "negative",
-          });
-        });
+        }
       }
     })
     .catch((err) => {
       console.log(err.errors);
-      let allDesks;
-      DeskRepository.getDesks().then((desks) => {
-        allDesks = desks;
-        res.render("mainPanel/bookingPage", {
-          info: "Failed to load bookings",
-          allDesks: allDesks,
-          navLocation: "booking",
-          status: "negative",
+      if (user.idUser === 1) {
+        let allDesks;
+        DeskRepository.getDesks().then((desks) => {
+          allDesks = desks;
+          return BookingRepository.getBookings().then((bookings) => {
+            allBookings = bookings;
+            res.render("mainPanel/bookingPage", {
+              info: "Failed to load bookings",
+              user: user,
+              allDesks: allDesks,
+              allBookings: allBookings,
+              navLocation: "admin",
+              status: "negative",
+            });
+          });
         });
-      });
+      } else {
+        let allDesks;
+        DeskRepository.getDesks().then((desks) => {
+          allDesks = desks;
+          return BookingRepository.getBookings().then((bookings) => {
+            allBookings = bookings;
+            res.render("mainPanel/bookingPage", {
+              info: "Failed to load bookings",
+              user: user,
+              allDesks: allDesks,
+              allBookings: allBookings,
+              navLocation: "booking",
+              status: "negative",
+            });
+          });
+        });
+      }
     });
 };
