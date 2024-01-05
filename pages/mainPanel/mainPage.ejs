@@ -72,7 +72,7 @@
                 <% if (booking.idUser == user.idUser) { %>
                   <% let desk = allDesks.find((desk) => desk.idDesk == booking.idDesk); %>
                   <% const bookingDate = new Date(booking.bookingDate); %>
-                  <% if (bookingDate => new Date()) { %>
+                  <% if (bookingDate >= new Date()) { %>
                     <div class="myBookingsInfo">
                       <div class="myBookingsText">
                         <span class="date"><%= bookingDate.toISOString().split("T")[0] + ' ->'%></span>
